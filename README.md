@@ -1,2 +1,17 @@
 # CS5_XClone_Nam
-Nombre de la materia.  Nombre completo del proyecto.  Nombre del equipo.  Nombres completos de los integrantes del equipo.  Breve descripción del proyecto. Instrucciones de compilación y ejecución.  Requerimientos del proyecto (lenguajes, frameworks, librerías, etc.).  Licencia utilizada
+**Nombre de la Materia:** Construcción de software 5
+**Nombre del Proyecto:** XClone
+**Equipo:** Nam
+**Integrantes:**
+* Nikol Henao
+* Ana María Morales
+* Mariana Ospina
+**Descripción:**
+Este proyecto implementa un sistema para gestionar información de alumnos,
+incluyendo matriculación, notas y generación de reportes.
+**Requerimientos:**
+* React JS
+* Node v20.12.1
+**Instrucciones de compilación y ejecución:**
+1. Clonar el repositorio.
+
