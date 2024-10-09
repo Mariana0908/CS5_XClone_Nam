@@ -1,0 +1,29 @@
+.login-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center; 
+    background-color: #ffffff; 
+    padding: 20px;
+  }
+.logo {
+    background-color: #f0f0f0;
+    max-width: 100%; /* Asegúrate de que la imagen no exceda el contenedor */
+  max-height: 100%; /* Mantiene la proporción de la imagen */
+  height: auto; /* Mantiene la proporción de la imagen */
+  }
+  .form-container {
+    display: flex;
+  flex-direction: column;
+  width: 70%;
+  padding: 20px;
+  justify-content: center;
+  gap: 16px; /* Espacio entre los elementos */
+      
+      
+  }
+  .button-container {
+    display: flex; 
+    gap: 10px; 
+    margin: 10px; 
+    border-radius: 20px;
+  }
