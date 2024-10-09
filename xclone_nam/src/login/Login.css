@@ -1,22 +1,33 @@
 .login-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center; 
-    background-color: #ffffff; 
-    padding: 20px;
+  display: flex;
+  position: absolute;
+  width: 20%; /* Ocupa el ancho completo */
+  height: 100vh; /* Ocupa el alto completo de la pantalla */
+  justify-content: flex-start; /* Alinear todo hacia la izquierda */
+  align-items: center; 
+ 
+  padding: 0px;
+  top: 2px;
+  right: 70%;
+
   }
-.logo {
-    background-color: #f0f0f0;
-    max-width: 100%; /* Asegúrate de que la imagen no exceda el contenedor */
-  max-height: 100%; /* Mantiene la proporción de la imagen */
-  height: auto; /* Mantiene la proporción de la imagen */
-  }
+  .logo {
+    background-color: #7e7676;
+    width: 36%; /* Ajusta según el tamaño que necesites */
+    height: 95%; /* Mantiene la proporción de la imagen */
+    margin-right: 20px; /* Espacio entre la logo y el formulario */
+    position: absolute; /* Asegura que esté en la esquina izquierda */
+    left: 60%; /* Espacio desde el borde izquierdo */
+    top: 0px; /* Espacio desde la parte superior */
+}
+
   .form-container {
-    display: flex;
+    
+  display: flex;
   flex-direction: column;
   width: 70%;
-  padding: 20px;
-  justify-content: center;
+  padding: 70px;
+  justify-content: left ;
   gap: 16px; /* Espacio entre los elementos */
       
       
