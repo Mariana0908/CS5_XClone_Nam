@@ -14,7 +14,7 @@ import NotificationsIcon from "@mui/icons-material/Notifications";
 import LocalPostOfficeIcon from "@mui/icons-material/LocalPostOffice";
 import Face3Icon from "@mui/icons-material/Face3";
 import LoginIcon from "@mui/icons-material/Login";
-import LogoutIcon from "@mui/icons-material/Logout";
+import AppRegistrationSharpIcon from '@mui/icons-material/AppRegistrationSharp';
 import { NavLink } from "react-router-dom";
 
 export const NavBar = () => {
@@ -22,7 +22,7 @@ export const NavBar = () => {
     {
       title: "home",
       icon: <HomeIcon />,
-      path: "/",
+      path: "/home",
     },
     {
       title: "Notifications",
@@ -42,11 +42,11 @@ export const NavBar = () => {
     {
       title: "login",
       icon: <LoginIcon />,
-      path: "/login",
+      path: "/",
     },
     {
       title: "logup",
-      icon: <LogoutIcon />,
+      icon: <AppRegistrationSharpIcon/>,
       path: "/logup",
     },
   ];
