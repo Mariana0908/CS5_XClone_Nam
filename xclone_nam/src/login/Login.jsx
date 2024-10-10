@@ -44,7 +44,7 @@ export function Login() {
 
           <h3>Don´t have an account?</h3>
 
-          <Link href="#" underline="hover">
+          <Link href="/logup" underline="hover">
             {"Log up"}
           </Link>
         </div>
