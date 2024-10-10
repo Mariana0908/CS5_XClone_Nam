@@ -17,14 +17,14 @@ export const Cards = () => {
   return (
     <Card>
       <CardActionArea>
-        <CardHeader
+        <CardHeader 
           avatar={
-            <Avatar sx={{ bgcolor: "#2790B0" }} aria-label="recipe">
+            <Avatar sx={{ bgcolor: "#2790B0" }}aria-label="recipe" >
               N
             </Avatar>
-          }
-          title="NOMBRE"
+          }title="NOMBRE"
           subheader="DIA/MES/AÑO"
+          
         />
 
         <CardContent>
