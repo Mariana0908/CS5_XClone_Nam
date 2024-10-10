@@ -273,7 +273,7 @@ export const Profile = () => {
 
   return (
     <>
-      <Box sx={{ flexGrow: 1 }}>
+      <Box sx={{ flexGrow: 1, mt:8 }}>
         <Grid container spacing={2} justifyContent="center" alignItems="center">
           <Grid item xs={4}>
             <Avatar
