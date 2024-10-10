@@ -1,17 +1,16 @@
-import { useState } from 'react'
-import './App.css'
-import { Login } from './login/Login'
-import { Logup } from './logup/Logup'
+import "./App.css";
+import { NavBar } from "./ui/NavBar";
+import { BrowserRouter } from "react-router-dom";
+import { AppRouters } from "./routes/AppRouters";
 
-
-function App() {
-
+export const App = () => {
   return (
     <>
-      <Login />
-      <Logup/> 
+      <BrowserRouter>
+        <NavBar />
+        <AppRouters/>
+      </BrowserRouter>
     </>
   )
 }
 
-export default App
