@@ -59,7 +59,7 @@ const[name, setName]=useState("");
 
       <h3>Already have an account?</h3>
 
-      <Link href="#" underline="hover">
+      <Link href="/login" underline="hover">
         {"Log In"}
       </Link>
     </>
