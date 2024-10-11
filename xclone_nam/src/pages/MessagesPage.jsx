@@ -1,7 +1,5 @@
-import React from 'react'
+import React from "react";
 
 export const MessagesPage = () => {
-  return (
-    <h1>messages</h1>
-  )
-}
+  return <h1>messages</h1>;
+};

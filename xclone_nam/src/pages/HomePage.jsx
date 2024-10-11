@@ -1,4 +1,4 @@
-import { Grid } from "@mui/material";
+import { Grid2 as Grid } from "@mui/material";
 import { Post } from "../components/Post";
 import { Cards } from "../components/Cards";
 
