@@ -1,20 +1,14 @@
 import TabContext from "@mui/lab/TabContext";
 import TabList from "@mui/lab/TabList";
 import TabPanel from "@mui/lab/TabPanel";
-import {
-  Avatar,
-  Box,
-  Button,
-  Grid2 as Grid,
-  Tab,
-  Typography,
-} from "@mui/material";
+import { Avatar, Box, Grid2 as Grid, Tab, Typography } from "@mui/material";
 import React from "react";
 import ListOfUsers from "./ListOfUsers";
 import { Post } from "./Post";
 import { followers } from "../../mocks/getFollowers";
 import { following } from "../../mocks/getFollowing";
 import FollowButton from "./FollowButton";
+import { myInfo } from "../../mocks/getMyInfo";
 
 export const UserProfile = ({ userInfo, userId }) => {
   //Define what the show profile (user or me)
@@ -105,7 +99,7 @@ export const UserProfile = ({ userInfo, userId }) => {
           </TabList>
         </Box>
         <TabPanel value="1">
-          <Post />
+          <Post posts={myInfo.myPost} />
         </TabPanel>
         <TabPanel value="2">Saved</TabPanel>
         <TabPanel value="3">

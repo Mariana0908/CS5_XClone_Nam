@@ -1,76 +1,119 @@
 import React, { useState } from "react";
-import TextField from "@mui/material/TextField";
-import Button from "@mui/material/Button";
+import {
+  TextField,
+  Button,
+  Link,
+  Grid2 as Grid,
+  Paper,
+  Typography,
+  Box,
+} from "@mui/material";
 import GoogleIcon from "@mui/icons-material/Google";
-import Link from "@mui/material/Link";
-import "./Login.css";
-import { Navigate, useNavigate } from "react-router-dom";
-import logoLogin from "../assets/images/logoNameSlogan.png"
+import { useNavigate } from "react-router-dom";
+import logoLogin from "../assets/images/logoNameSlogan.png";
 
-export function Login({setLogged}) {
-
-  
-  //capture data with useState and onchange event
-  const [userName, setUserName] = useState("");
+export function Login({ setLogged, userName, setUserName }) {
   const [password, setPassword] = useState("");
-  const [error, setError]= useState(false);
-  console.log(userName);
-  console.log(password);
-  
-  const navigate= useNavigate();
+  const [error, setError] = useState(false);
+  const navigate = useNavigate();
 
-  const isError= (e) => {
-    if(userName==="" || password===""){
+  const isError = () => {
+    if (userName === "" || password === "") {
       setError(true);
-      return
+      return;
     }
     setError(false);
     setLogged(true);
     navigate("/home");
-  }
+  };
 
-  
   return (
-    <>
-      <div className="login-container">
-        <div className="form-container">
-          <h1>Log In</h1>
+    <Grid container component="main" sx={{ height: "100vh" }}>
+      {/* Left Side for  Form */}
+      <Grid
+        item
+        xs={12}
+        sm={8}
+        md={6}
+        component={Paper}
+        elevation={6}
+        square
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          justifyContent: "center",
+          padding: 4,
+        }}
+      >
+        <Box sx={{ width: "80%", maxWidth: 400 }}>
+          <Typography component="h1" variant="h4" gutterBottom>
+            Log In
+          </Typography>
+
           <TextField
-            onChange={(e) => {
-              setUserName(e.target.value);
-            }}
-            required
-            id="user_name"
+            fullWidth
+            margin="normal"
             label="Username"
+            required
+            onChange={(e) => setUserName(e.target.value)}
           />
 
           <TextField
-            onChange={(e) => {
-              setPassword(e.target.value);
-            }}
-            required
-            id="password"
+            fullWidth
+            margin="normal"
             label="Password"
             type="password"
+            required
+            onChange={(e) => setPassword(e.target.value)}
           />
-          <div className="button-container">
-            <Button variant="contained">
-              <GoogleIcon />
+
+          <Box
+            sx={{
+              mt: 3,
+              display: "flex",
+              justifyContent: "space-between",
+              color: "#2790B0",
+            }}
+          >
+            <Button variant="contained" startIcon={<GoogleIcon />}>
+              Google
             </Button>
 
-            <Button variant="contained" onClick={isError} >Sing In</Button>
-          </div>
+            <Button variant="contained" onClick={isError}>
+              Sign In
+            </Button>
+          </Box>
 
-          <h3>Don´t have an account?</h3>
+          <Typography variant="body2" sx={{ mt: 3 }}>
+            Don’t have an account? <Link href="/logup">Sign up</Link>
+          </Typography>
 
-          <Link href="/logup" underline="hover">
-            {"Log up"}
-          </Link>
-        </div>
-        {error && <p>All fields are required</p>}
-      </div>
+          {error && (
+            <Typography color="error">All fields are required</Typography>
+          )}
+        </Box>
+      </Grid>
 
-      <img src={logoLogin}  className="logo"/>
-    </>
+      {/* Right Side for Image */}
+      <Grid
+        item
+        xs={false}
+        sm={4}
+        md={6}
+        sx={{
+          backgroundColor: "#f0f0f0",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
+        <img
+          src={logoLogin}
+          alt="Login logo"
+          style={{ background: "#f0f0f0", width: "100%", height: "auto" }}
+        />
+      </Grid>
+    </Grid>
   );
 }

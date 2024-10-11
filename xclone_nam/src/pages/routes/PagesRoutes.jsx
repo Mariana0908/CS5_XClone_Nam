@@ -1,12 +1,13 @@
-import { Route, Routes } from "react-router-dom"
-import { HomePage } from "../HomePage"
-import { MessagesPage } from "../MessagesPage"
-import { NavBar } from "../../ui/NavBar"
+import { Route, Routes } from "react-router-dom";
+import { HomePage } from "../HomePage";
+import { MessagesPage } from "../MessagesPage";
 import { Profile } from "../../views/profile/MyProfile";
+import { NavBar } from "../../ui/NavBar";
 
-export const PagesRoutes = () => {
+export const PagesRoutes = ({ userName }) => {
   return (
     <>
+      <NavBar userName={userName} />
       <Routes>
         <Route path="/home" element={<HomePage />} />
         <Route path="/notification" element={"page Notifications"} />

@@ -5,6 +5,7 @@ import {
   Drawer,
   IconButton,
   Toolbar,
+  Typography,
 } from "@mui/material";
 import { NavListDrawer } from "./NavListDrawer";
 import { useState } from "react";
@@ -13,16 +14,18 @@ import HomeIcon from "@mui/icons-material/Home";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import LocalPostOfficeIcon from "@mui/icons-material/LocalPostOffice";
 import Face3Icon from "@mui/icons-material/Face3";
-import LogoutIcon from '@mui/icons-material/Logout';
-import { NavLink } from "react-router-dom";
+import LogoutIcon from "@mui/icons-material/Logout";
+import { NavLink, useNavigate } from "react-router-dom";
 
-export const NavBar = () => {
+export const NavBar = ({ userName }) => {
+  const navigate = useNavigate();
+
   const navLinks = [
     {
-        title: "profile",
-        icon: <Face3Icon />,
-        path: "/profile",
-      },
+      title: "profile",
+      icon: <Face3Icon />,
+      path: "/profile",
+    },
     {
       title: "home",
       icon: <HomeIcon />,
@@ -39,18 +42,23 @@ export const NavBar = () => {
       path: "/messages",
     },
     {
-        title: "logout",
-        icon: <LogoutIcon />,
-        path: "/login",
-      },
-   
-   
+      title: "logout",
+      icon: (
+        <LogoutIcon
+          onClick={() => {
+            navigate("/login");
+            window.location.reload();
+          }}
+        />
+      ),
+      path: "/login",
+    },
   ];
   const [open, setOpen] = useState(false);
   return (
     <>
-      <AppBar position="fixed" sx={{bgcolor:'#e0e0e0'}}>
-        <Toolbar>
+      <AppBar position="fixed" sx={{ bgcolor: "#e0e0e0" }}>
+        <Toolbar sx={{ display: "flex", justifyContent: "space-between" }}>
           <Button
             onClick={() => setOpen(true)}
             sx={{ display: { xs: "flex", sm: "none" } }}
@@ -71,6 +79,9 @@ export const NavBar = () => {
               </Button>
             ))}
           </Box>
+          <Typography sx={{ color: "#2B4E72" }}>
+            Hello, @{userName}!{" "}
+          </Typography>
         </Toolbar>
       </AppBar>
 

@@ -13,6 +13,9 @@ export const myInfo = {
     {
       postId: 3,
       date: "23/01/24",
+      hour: "8:25am",
+      name: "Aleandra Navarro",
+      userName: "@aleja2312",
       bodyPost: "programming is my passion",
       likeCount: 2,
       savePost: true, //this is state for save post
@@ -20,6 +23,9 @@ export const myInfo = {
     {
       postId: 1,
       date: "28/03/24",
+      hour: "8:25am",
+      name: "Aleandra Navarro",
+      userName: "@aleja2312",
       bodyPost: "today is today and tomorrow is tomorrow",
       likeCount: 0,
       savePost: false, //this is state for save post
@@ -27,6 +33,9 @@ export const myInfo = {
     {
       postId: 2,
       date: "15/05/24",
+      hour: "8:25am",
+      name: "Aleandra Navarro",
+      userName: "@aleja2312",
       bodyPost: "Siuuuuuuu",
       likeCount: 15,
       savePost: true, //this is state for save post
@@ -35,6 +44,9 @@ export const myInfo = {
     {
       postId: 4,
       date: "9/08/24",
+      hour: "8:25am",
+      name: "Aleandra Navarro",
+      userName: "@aleja2312",
       bodyPost: "Hello word",
       likeCount: 3,
       savePost: false, //this is state for save post
