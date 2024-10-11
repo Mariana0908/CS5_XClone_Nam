@@ -6,6 +6,7 @@
 * Nikol Henao
 * Ana María Morales
 * Mariana Ospina
+
 Description:** Description:** **Nam **
 This project is a clone of the X platform made with React.
 **Requirements:**
