@@ -7,9 +7,9 @@ export const App = () => {
   return (
     <>
       <BrowserRouter>
-        <AppRouters/>
+        <NavBar />
+        <AppRouters />
       </BrowserRouter>
     </>
-  )
-}
-
+  );
+};

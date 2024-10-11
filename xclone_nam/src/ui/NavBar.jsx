@@ -26,7 +26,7 @@ export const NavBar = () => {
     {
       title: "home",
       icon: <HomeIcon />,
-      path: "/",
+      path: "/home",
     },
     {
       title: "Notifications",

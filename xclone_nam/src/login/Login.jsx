@@ -5,6 +5,7 @@ import GoogleIcon from "@mui/icons-material/Google";
 import Link from "@mui/material/Link";
 import "./Login.css";
 import { Navigate, useNavigate } from "react-router-dom";
+import logoLogin from "../assets/images/logoNameSlogan.png"
 
 export function Login({setLogged}) {
 
@@ -25,7 +26,7 @@ export function Login({setLogged}) {
     }
     setError(false);
     setLogged(true);
-    navigate("/");
+    navigate("/home");
   }
 
   
@@ -66,10 +67,10 @@ export function Login({setLogged}) {
             {"Log up"}
           </Link>
         </div>
-        {error && <p>llenar todos los campos</p>}
+        {error && <p>All fields are required</p>}
       </div>
 
-      <img src="./img/logo.jpg" className="logo" />
+      <img src={logoLogin}  className="logo"/>
     </>
   );
 }
