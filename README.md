@@ -6,9 +6,8 @@
 * Nikol Henao
 * Ana María Morales
 * Mariana Ospina
-Description:** Description:** **Nam **Nikol Henao
-This project implements a system to manage student information,
-including enrollment, grades and report generation.
+Description:** Description:** **Nam **
+This project is a clone of the X platform made with React.
 **Requirements:**
 * React JS
 * Node v20.12.1
