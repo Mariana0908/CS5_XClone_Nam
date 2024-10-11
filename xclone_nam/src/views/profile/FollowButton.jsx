@@ -10,7 +10,10 @@ const FollowButton = ({ initialFollowing }) => {
 
   return (
     <Button
-      sx={{ backgroundColor:!isFollowing ?"#2790B0": "gray", color: !isFollowing ?"#FFFFFF": "black" }}
+      sx={{
+        backgroundColor: !isFollowing ? "#2790B0" : "gray",
+        color: !isFollowing ? "#FFFFFF" : "black",
+      }}
       variant="contained"
       onClick={handleClick}
     >
