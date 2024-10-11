@@ -8,10 +8,12 @@ import ListItemText from "@mui/material/ListItemText";
 import Avatar from "@mui/material/Avatar";
 import FollowButton from "./FollowButton";
 import Pagination from "@mui/material/Pagination";
+import { useNavigate } from "react-router-dom";
 
 const ListOfUsers = ({ follows }) => {
   const [page, setPage] = useState(1);
   const usersPerPage = 10;
+  const navigate = useNavigate();
 
   // Calculate the total number of the pages
   const pageCount = Math.ceil(follows.length / usersPerPage);
@@ -44,6 +46,7 @@ const ListOfUsers = ({ follows }) => {
               />
             </ListItemAvatar>
             <ListItemText
+              onClick={() => navigate("/user/" + follower.userId)}
               primary={follower.name}
               secondary={follower.userName}
             />

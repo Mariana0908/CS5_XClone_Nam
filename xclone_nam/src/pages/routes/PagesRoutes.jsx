@@ -12,6 +12,8 @@ export const PagesRoutes = () => {
         <Route path="/notification" element={"page Notifications"}/>
         <Route path="/messages" element={<MessagesPage/>}/>
         <Route path="/profile" element={<Profile/>}/>
+        <Route path="/user/:userId" element={<Profile/>}/> {/* dynamic route */}
+
     </Routes>
     </>
   )
