@@ -4,15 +4,19 @@ import { PrivateRoute } from "./PrivateRoute";
 
 export const AppRouters = () => {
   const [logged, setLogged] = useState(false);
-   console.log(logged)
+  const [userName, setUserName] = useState("");
+  console.log(logged);
   return (
     <>
-     {logged
-     ? 
-     <PrivateRoute />
-     :
-     <PublicRoute setLogged={setLogged} />}
-     </>
+      {logged ? (
+        <PrivateRoute userName={userName} />
+      ) : (
+        <PublicRoute
+          setLogged={setLogged}
+          userName={userName}
+          setUserName={setUserName}
+        />
+      )}
+    </>
   );
-}
-;
+};
