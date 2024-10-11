@@ -30,7 +30,7 @@ export const Post = () => {
         fullWidth
       />
       <Box sx={{ display: "flex", justifyContent: "flex-end", marginTop: 2 }}>
-        <Button variant="contained">Post</Button>
+        <Button variant="contained" sx={{bgcolor:'#2790B0'}}>Post</Button>
       </Box>
     </Container>
   );

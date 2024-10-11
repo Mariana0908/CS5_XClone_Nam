@@ -1,15 +1,21 @@
 import { Route, Routes } from "react-router-dom";
 import { Login } from "../login/Login";
-import { Logup } from "../logup/Logup";
-import { HomePage } from "../pages/HomePage";
-import { PagesRoutes } from "../pages/routes/PagesRoutes";
+
+import { useState } from "react";
+import { PublicRoute } from "./PublicRoute";
+import { PrivateRoute } from "./PrivateRoute";
 
 export const AppRouters = () => {
+  const [logged, setLogged] = useState(false);
+   console.log(logged)
   return (
-    <Routes>
-      <Route index element={<Login />} />
-      <Route path="/logup" element={<Logup />} />
-      <Route path="/*" element={<PagesRoutes/>} />
-    </Routes>
+    <>
+     {logged
+     ? 
+     <PrivateRoute />
+     :
+     <PublicRoute setLogged={setLogged} />}
+     </>
   );
-};
+}
+;
