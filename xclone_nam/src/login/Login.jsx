@@ -4,13 +4,32 @@ import Button from "@mui/material/Button";
 import GoogleIcon from "@mui/icons-material/Google";
 import Link from "@mui/material/Link";
 import "./Login.css";
+import { Navigate, useNavigate } from "react-router-dom";
+import logoLogin from "../assets/images/logoNameSlogan.png"
 
-export function Login() {
+export function Login({setLogged}) {
+
+  
   //capture data with useState and onchange event
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError]= useState(false);
   console.log(userName);
   console.log(password);
+  
+  const navigate= useNavigate();
+
+  const isError= (e) => {
+    if(userName==="" || password===""){
+      setError(true);
+      return
+    }
+    setError(false);
+    setLogged(true);
+    navigate("/home");
+  }
+
+  
   return (
     <>
       <div className="login-container">
@@ -39,7 +58,7 @@ export function Login() {
               <GoogleIcon />
             </Button>
 
-            <Button variant="contained">Sing Up</Button>
+            <Button variant="contained" onClick={isError} >Sing In</Button>
           </div>
 
           <h3>Don´t have an account?</h3>
@@ -48,9 +67,10 @@ export function Login() {
             {"Log up"}
           </Link>
         </div>
+        {error && <p>All fields are required</p>}
       </div>
 
-      <img src="./img/logo.jpg" className="logo" />
+      <img src={logoLogin}  className="logo"/>
     </>
   );
 }

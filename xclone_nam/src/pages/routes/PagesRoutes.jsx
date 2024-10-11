@@ -1,6 +1,7 @@
-import { Route, Routes } from "react-router-dom";
-import { HomePage } from "../HomePage";
-import { MessagesPage } from "../MessagesPage";
+import { Route, Routes } from "react-router-dom"
+import { HomePage } from "../HomePage"
+import { MessagesPage } from "../MessagesPage"
+import { NavBar } from "../../ui/NavBar"
 import { Profile } from "../../views/profile/MyProfile";
 
 export const PagesRoutes = () => {

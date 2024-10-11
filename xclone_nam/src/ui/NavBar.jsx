@@ -13,12 +13,16 @@ import HomeIcon from "@mui/icons-material/Home";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import LocalPostOfficeIcon from "@mui/icons-material/LocalPostOffice";
 import Face3Icon from "@mui/icons-material/Face3";
-import LoginIcon from "@mui/icons-material/Login";
-import AppRegistrationSharpIcon from '@mui/icons-material/AppRegistrationSharp';
+import LogoutIcon from '@mui/icons-material/Logout';
 import { NavLink } from "react-router-dom";
 
 export const NavBar = () => {
   const navLinks = [
+    {
+        title: "profile",
+        icon: <Face3Icon />,
+        path: "/profile",
+      },
     {
       title: "home",
       icon: <HomeIcon />,
@@ -35,26 +39,17 @@ export const NavBar = () => {
       path: "/messages",
     },
     {
-      title: "profile",
-      icon: <Face3Icon />,
-      path: "/profile",
-    },
-    {
-      title: "login",
-      icon: <LoginIcon />,
-      path: "/",
-    },
-    {
-      title: "logup",
-      icon: <AppRegistrationSharpIcon/>,
-      path: "/logup",
-    },
+        title: "logout",
+        icon: <LogoutIcon />,
+        path: "/login",
+      },
+   
+   
   ];
   const [open, setOpen] = useState(false);
-
   return (
     <>
-      <AppBar position="fixed">
+      <AppBar position="fixed" sx={{bgcolor:'#e0e0e0'}}>
         <Toolbar>
           <Button
             onClick={() => setOpen(true)}
@@ -69,9 +64,9 @@ export const NavBar = () => {
               <Button variant="text" key={item.title}>
                 <NavLink
                   to={item.path}
-                  style={{ textDecoration: "none", color: "white" }}
+                  style={{ textDecoration: "none", color: "#2B4E72" }}
                 >
-                  {item.title}
+                  {item.icon}
                 </NavLink>
               </Button>
             ))}
