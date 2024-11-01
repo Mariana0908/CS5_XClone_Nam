@@ -1,22 +1,20 @@
 import { useState } from "react";
 import { PublicRoute } from "./PublicRoute";
 import { PrivateRoute } from "./PrivateRoute";
+import { Provider } from "../context/Provider";
 
 export const AppRouters = () => {
   const [logged, setLogged] = useState(false);
-  const [userName, setUserName] = useState("");
-  console.log(logged);
-  return (
-    <>
+ 
+ return (
+    <Provider>
       {logged ? (
-        <PrivateRoute userName={userName} />
+        <PrivateRoute />
       ) : (
         <PublicRoute
           setLogged={setLogged}
-          userName={userName}
-          setUserName={setUserName}
         />
       )}
-    </>
+    </Provider>
   );
 };
