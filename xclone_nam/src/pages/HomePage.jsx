@@ -3,17 +3,8 @@ import { Post } from "../views/profile/Post";
 import { posts } from "../mocks/posts";
 import ButtonPost from "../components/ButtonPost";
 import { FormPost } from "../components/FormPost";
-import { context } from "../context/Context";
-import { useContext, useEffect } from "react";
 
 export const HomePage = () => {
-  const {post, setPost} = useContext(context);
-
-  useEffect(() => {
-    setPost(posts)
-  }, [])
-  
-
   return (
     <Grid
       container
@@ -30,7 +21,7 @@ export const HomePage = () => {
         <ButtonPost />
       </Grid>
       <Grid item xs={7}>
-        <Post posts={post || []} />
+        <Post posts={posts} />
       </Grid>
     </Grid>
   );
