@@ -2,14 +2,16 @@ import { Routes, Route } from "react-router-dom";
 import { Login } from "../login/Login";
 import { Logup } from "../logup/Logup";
 
-export const PublicRoute = ({ setLogged }) => {
+export const PublicRoute = ({ setLogged, userName, setUserName }) => {
   return (
     <Routes>
       <Route
         path="/login"
         element={
           <Login
-          setLogged={setLogged}
+            userName={userName}
+            setUserName={setUserName}
+            setLogged={setLogged}
           />
         }
       />
