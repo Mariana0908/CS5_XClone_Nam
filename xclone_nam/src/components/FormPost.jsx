@@ -10,11 +10,11 @@ import {
 } from "@mui/material";
 import user from "../assets/images/user.png";
 import Textarea from "@mui/joy/Textarea";
-import { context } from "../context/Context";
+import { Context } from "../context/Context";
 
 export const FormPost = () => {
   const [text, setText] = React.useState("");
-  const { post, setPost, user: userName, setUser } = React.useContext(context);
+  const { post, setPost, user: userName } = React.useContext(Context);
 
   const addNewPost = () => {
     setPost([
@@ -23,8 +23,8 @@ export const FormPost = () => {
         userId: 0,
         img: user,
 
-        name: "Aleandra Navarro",
-        userName: userName,
+        name: userName.displayName,
+        userName: userName.displayName,
         isFollowing: false,
         postId: post.length + 1,
         date: "15/05/24",
@@ -58,7 +58,16 @@ export const FormPost = () => {
       <Textarea
         placeholder="Write here…"
         value={text}
-        onChange={(event) => setText(event.target.value)}
+        onChange={(event) => {
+          // text.length should be less or equal to 280
+          if (event.target.value.length <= 280) {
+            setText(event.target.value);
+          } else {
+            alert("Texto demasiado largo, máximo 280 caracteres.");
+            setText(event.target.value.slice(0, 280));
+          }
+          
+        }}
         minRows={2}
         maxRows={4}
         endDecorator={
