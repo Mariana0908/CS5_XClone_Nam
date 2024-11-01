@@ -5,10 +5,9 @@ import { Provider } from "../context/Provider";
 
 export const AppRouters = () => {
   const [logged, setLogged] = useState(false);
-  console.log(logged);
-  return (
-    <>
-      <Provider>
+ 
+ return (
+    <Provider>
       {logged ? (
         <PrivateRoute />
       ) : (
@@ -16,7 +15,6 @@ export const AppRouters = () => {
           setLogged={setLogged}
         />
       )}
-      </Provider>
-    </>
+    </Provider>
   );
 };
