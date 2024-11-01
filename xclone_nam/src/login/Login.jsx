@@ -1,9 +1,10 @@
+// Login.js
 import React, { useContext, useState } from "react";
 import {
   TextField,
   Button,
   Link,
-  Grid2 as Grid,
+  Grid,
   Paper,
   Typography,
   Box,
@@ -11,28 +12,46 @@ import {
 import GoogleIcon from "@mui/icons-material/Google";
 import { useNavigate } from "react-router-dom";
 import logoLogin from "../assets/images/logoNameSlogan.png";
-import { context } from "../context/Context";
+import { Context } from "../context/Context";
 
-export function Login({ setLogged }) {
+export function Login() {
   const [error, setError] = useState(false);
+  const [errorAccount, setErrorAccount] = useState(false);
   const navigate = useNavigate();
-  const {user: userName, setUser: setUserName, password, setPassword} = useContext(context);
-  
-  const isError = () => {
-    if (userName === "" || password === "") {
+  const {
+    email,
+    setEmail,
+    password,
+    setPassword,
+    login,
+    signUp,
+    loginWithGoogle,
+  } = useContext(Context);
+
+  const handleLogin = async () => {
+    if (!email || !password) {
       setError(true);
       return;
     }
     setError(false);
-    setLogged(true);
+
+    try {
+      await login();
+      navigate("/home"); //Redirects to home if login is successful
+    } catch (error) {
+      console.error("Login failed:", error.message);
+      setErrorAccount(true);
+      navigate("/login"); // Redirects to error page if there is a failure
+    }
+  };
+
+  const handleGoogleLogin = async () => {
+    await loginWithGoogle();
     navigate("/home");
   };
 
-  console.log(userName)
-
   return (
     <Grid container component="main" sx={{ height: "100vh" }}>
-      {/* Left Side for  Form */}
       <Grid
         item
         xs={12}
@@ -53,13 +72,18 @@ export function Login({ setLogged }) {
           <Typography component="h1" variant="h4" gutterBottom>
             Log In
           </Typography>
-
+          {errorAccount && (
+            <Typography component="h4" variant="h4" gutterBottom color="red">
+              Invalid Credentials
+            </Typography>
+          )}
           <TextField
             fullWidth
             margin="normal"
-            label="Username"
+            label="Email"
+            type="email"
             required
-            onChange={(e) => setUserName(e.target.value)}
+            onChange={(e) => setEmail(e.target.value)}
           />
 
           <TextField
@@ -79,11 +103,15 @@ export function Login({ setLogged }) {
               color: "#2790B0",
             }}
           >
-            <Button variant="contained" startIcon={<GoogleIcon />}>
+            <Button
+              variant="contained"
+              startIcon={<GoogleIcon />}
+              onClick={handleGoogleLogin}
+            >
               Google
             </Button>
 
-            <Button variant="contained" onClick={isError}>
+            <Button variant="contained" onClick={handleLogin}>
               Sign In
             </Button>
           </Box>
@@ -98,7 +126,6 @@ export function Login({ setLogged }) {
         </Box>
       </Grid>
 
-      {/* Right Side for Image */}
       <Grid
         item
         xs={false}

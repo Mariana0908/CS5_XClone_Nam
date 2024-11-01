@@ -3,16 +3,16 @@ import { Post } from "../views/profile/Post";
 import { posts } from "../mocks/posts";
 import ButtonPost from "../components/ButtonPost";
 import { FormPost } from "../components/FormPost";
-import { context } from "../context/Context";
+
 import { useContext, useEffect } from "react";
+import { Context } from "../context/Context";
 
 export const HomePage = () => {
-  const {post, setPost} = useContext(context);
+  const {post, setPost} = useContext(Context);
 
   useEffect(() => {
     setPost(posts)
   }, [])
-  
 
   return (
     <Grid

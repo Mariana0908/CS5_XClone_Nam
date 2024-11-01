@@ -15,7 +15,7 @@ export const Post = ({ posts }) => {
   // Function to order posts from most recent to oldest
   const parseDate = (dateString) => {
     const [day, month, year] = dateString.split("/");
-    return new Date(`20${year}-${month}-${day}`); // Add "20" to complete the year
+    return new Date(`20${year}-${month}-${day}`);
   };
 
   posts.sort((a, b) => parseDate(b.date) - parseDate(a.date));
@@ -32,7 +32,7 @@ export const Post = ({ posts }) => {
   const handleChangePage = (event, value) => {
     setPage(value);
   };
-  console.log(currentPosts);
+
   return (
     <Box>
       {/* Map posts from current page */}
@@ -70,7 +70,18 @@ export const Post = ({ posts }) => {
             </Grid>
 
             {/* Post contents */}
-            <Typography sx={{ mt: 5, mb: 5 }} variant="h5" component="div">
+            <Typography
+              sx={{
+                mt: 5,
+                mb: 5,
+                maxWidth: 500,
+                wordBreak: "break-word",      // Breaks long words automatically
+                overflowWrap: "break-word",    // Breaks long lines
+                whiteSpace: "pre-wrap",        // Preserves line breaks and spaces
+              }}
+              variant="h5"
+              component="div"
+            >
               {post.bodyPost}
             </Typography>
 

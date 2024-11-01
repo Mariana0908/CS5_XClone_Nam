@@ -16,11 +16,11 @@ import LocalPostOfficeIcon from "@mui/icons-material/LocalPostOffice";
 import Face3Icon from "@mui/icons-material/Face3";
 import LogoutIcon from "@mui/icons-material/Logout";
 import { NavLink, useNavigate } from "react-router-dom";
-import { context } from "../context/Context";
+import { Context } from "../context/Context";
 
 export const NavBar = () => {
   const navigate = useNavigate();
-  const {user: userName} = useContext(context);
+  const {user: userName} = useContext(Context);
 
   const navLinks = [
     {
@@ -82,7 +82,7 @@ export const NavBar = () => {
             ))}
           </Box>
           <Typography sx={{ color: "#2B4E72" }}>
-            Hello, {userName}!{" "}
+            Hello, {userName.name !== undefined && userName.name !== "" ? userName.name : userName.displayName || userName.userName}!
           </Typography>
         </Toolbar>
       </AppBar>
@@ -93,7 +93,7 @@ export const NavBar = () => {
         onClose={() => setOpen(false)}
         sx={{ display: { xs: "flex", sm: "none" } }}
       >
-        {/* navlinks se pasa como prop para NavlistDrawer */}
+        {/* navlinks is passed as a prop for NavlistDrawer */}
         <NavListDrawer navLinks={navLinks} />
       </Drawer>
     </>
