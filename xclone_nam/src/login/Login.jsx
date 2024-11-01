@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import {
   TextField,
   Button,
@@ -11,12 +11,13 @@ import {
 import GoogleIcon from "@mui/icons-material/Google";
 import { useNavigate } from "react-router-dom";
 import logoLogin from "../assets/images/logoNameSlogan.png";
+import { context } from "../context/Context";
 
-export function Login({ setLogged, userName, setUserName }) {
+export function Login({ setLogged }) {
   const [password, setPassword] = useState("");
   const [error, setError] = useState(false);
   const navigate = useNavigate();
-
+  const {user: userName} = useContext(context);
   const isError = () => {
     if (userName === "" || password === "") {
       setError(true);

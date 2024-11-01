@@ -4,10 +4,10 @@ import { MessagesPage } from "../MessagesPage";
 import { Profile } from "../../views/profile/MyProfile";
 import { NavBar } from "../../ui/NavBar";
 
-export const PagesRoutes = ({ userName }) => {
+export const PagesRoutes = () => {
   return (
     <>
-      <NavBar userName={userName} />
+      <NavBar />
       <Routes>
         <Route path="/home" element={<HomePage />} />
         <Route path="/notification" element={"page Notifications"} />
