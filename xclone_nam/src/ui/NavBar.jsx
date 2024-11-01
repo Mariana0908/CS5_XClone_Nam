@@ -8,7 +8,7 @@ import {
   Typography,
 } from "@mui/material";
 import { NavListDrawer } from "./NavListDrawer";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import MenuIcon from "@mui/icons-material/Menu";
 import HomeIcon from "@mui/icons-material/Home";
 import NotificationsIcon from "@mui/icons-material/Notifications";
@@ -16,9 +16,11 @@ import LocalPostOfficeIcon from "@mui/icons-material/LocalPostOffice";
 import Face3Icon from "@mui/icons-material/Face3";
 import LogoutIcon from "@mui/icons-material/Logout";
 import { NavLink, useNavigate } from "react-router-dom";
+import { context } from "../context/Context";
 
-export const NavBar = ({ userName }) => {
+export const NavBar = () => {
   const navigate = useNavigate();
+  const {user: userName} = useContext(context);
 
   const navLinks = [
     {
@@ -80,7 +82,7 @@ export const NavBar = ({ userName }) => {
             ))}
           </Box>
           <Typography sx={{ color: "#2B4E72" }}>
-            Hello, @{userName}!{" "}
+            Hello, {userName}!{" "}
           </Typography>
         </Toolbar>
       </AppBar>

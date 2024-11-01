@@ -1,17 +1,25 @@
 # CS5_XClone_Nam
-**Nombre de la Materia:** Construcción de software 5
-**Nombre del Proyecto:** XClone
-**Equipo:** Nam
-**Integrantes:**
+**Subject Name:** Software Construction 5
+**Project Name:** XClone
+**Team:** Nam
+**Team Members:**
 * Nikol Henao
 * Ana María Morales
 * Mariana Ospina
-**Descripción:**
-Este proyecto implementa un sistema para gestionar información de alumnos,
-incluyendo matriculación, notas y generación de reportes.
-**Requerimientos:**
+
+Description:** Description:** **Nam **
+This project is a clone of the X platform made with React.
+
+**Requirements:**
 * React JS
 * Node v20.12.1
-**Instrucciones de compilación y ejecución:**
-1. Clonar el repositorio.
+  
+**Compilation and execution instructions:** 1.
+1. Clone the repository
+2. You must have nodejs installed
+3. npm install to install all the dependencies listed in the package.json file.
+4. Make sure the following libraries are included in package.json:
+    @mui/material
+    react-router-dom
+5. run the application.
 
