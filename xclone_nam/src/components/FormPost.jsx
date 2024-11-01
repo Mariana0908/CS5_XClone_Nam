@@ -15,7 +15,6 @@ import { context } from "../context/Context";
 export const FormPost = () => {
   const [text, setText] = React.useState("");
   const {post, setPost, user: userName, setUser} = React.useContext(context);
-console.log(post)
 
 const addNewPost = () => {
   setPost([...post, {userId: 0,
