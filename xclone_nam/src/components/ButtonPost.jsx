@@ -40,7 +40,6 @@ const ButtonPost = () => {
             const formData = new FormData(event.currentTarget);
             const formJson = Object.fromEntries(formData.entries());
             const email = formJson.email;
-            console.log(email);
             handleClose();
           },
         }}
