@@ -14,10 +14,10 @@ import logoLogin from "../assets/images/logoNameSlogan.png";
 import { context } from "../context/Context";
 
 export function Login({ setLogged }) {
-  const [password, setPassword] = useState("");
   const [error, setError] = useState(false);
   const navigate = useNavigate();
-  const {user: userName} = useContext(context);
+  const {user: userName, setUser: setUserName, password, setPassword} = useContext(context);
+  
   const isError = () => {
     if (userName === "" || password === "") {
       setError(true);
@@ -27,6 +27,8 @@ export function Login({ setLogged }) {
     setLogged(true);
     navigate("/home");
   };
+
+  console.log(userName)
 
   return (
     <Grid container component="main" sx={{ height: "100vh" }}>

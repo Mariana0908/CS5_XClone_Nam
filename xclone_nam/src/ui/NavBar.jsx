@@ -82,7 +82,7 @@ export const NavBar = () => {
             ))}
           </Box>
           <Typography sx={{ color: "#2B4E72" }}>
-            Hello, @{userName}!{" "}
+            Hello, {userName}!{" "}
           </Typography>
         </Toolbar>
       </AppBar>
