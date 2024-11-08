@@ -10,24 +10,23 @@ import FollowButton from "./FollowButton";
 import Pagination from "@mui/material/Pagination";
 import { useNavigate } from "react-router-dom";
 
-const ListOfUsers = ({ follows }) => {
+const ListOfUsers = ({ follows, users }) => {
   const [page, setPage] = useState(1);
   const usersPerPage = 10;
   const navigate = useNavigate();
+  const filteredData = users.filter(item => follows.includes(item.id));
 
   // Calculate the total number of the pages
-  const pageCount = Math.ceil(follows.length / usersPerPage);
-
-  // get user of the current page
-  const currentUsers = follows.slice(
-    (page - 1) * usersPerPage,
-    page * usersPerPage
-  );
+  const pageCount = Math.ceil(filteredData.length / usersPerPage);
 
   const handleChangePage = (event, value) => {
     setPage(value);
   };
-
+  // get user of the current page
+  const currentUsers = filteredData.slice(
+    (page - 1) * usersPerPage,
+    page * usersPerPage
+  );
   return (
     <Box sx={{ flexGrow: 1, maxWidth: 752 }}>
       <List>
@@ -46,7 +45,7 @@ const ListOfUsers = ({ follows }) => {
               />
             </ListItemAvatar>
             <ListItemText
-              onClick={() => navigate("/user/" + follower.userId)}
+              onClick={() => navigate("/user/" + follower.id)}
               primary={follower.name}
               secondary={follower.userName}
             />

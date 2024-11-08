@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Button } from "@mui/material";
 import Swal from "sweetalert2";
-import { followers } from "../../mocks/getFollowers";
+import { following } from "../../mocks/getFollowing";
 
 const FollowButton = ({ initialFollowing, username }) => {
   const [isFollowing, setIsFollowing] = useState(initialFollowing);
@@ -12,7 +12,7 @@ const FollowButton = ({ initialFollowing, username }) => {
     if (!isFollowing) {
       Swal.fire({
         title: "FOLLOW",
-        text: `you have started to follow ${followers.userName}`,
+        text: `you have started to follow ${following.userName}`,
         icon: "success",
         confirmButtonText: "OK",
         confirmButtonColor: "#2790B0",

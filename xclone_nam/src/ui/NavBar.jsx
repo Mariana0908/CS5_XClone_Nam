@@ -17,6 +17,7 @@ import Face3Icon from "@mui/icons-material/Face3";
 import LogoutIcon from "@mui/icons-material/Logout";
 import { NavLink, useNavigate } from "react-router-dom";
 import { Context } from "../context/Context";
+import { SearchBar } from "../components/SearchBar";
 
 export const NavBar = () => {
   const navigate = useNavigate();
@@ -57,6 +58,7 @@ export const NavBar = () => {
     },
   ];
   const [open, setOpen] = useState(false);
+  console.log(userName);
   return (
     <>
       <AppBar position="fixed" sx={{ bgcolor: "#e0e0e0" }}>
@@ -81,6 +83,7 @@ export const NavBar = () => {
               </Button>
             ))}
           </Box>
+          <SearchBar />
           <Typography sx={{ color: "#2B4E72" }}>
             Hello, {userName.name !== undefined && userName.name !== "" ? userName.name : userName.displayName || userName.userName}!
           </Typography>
