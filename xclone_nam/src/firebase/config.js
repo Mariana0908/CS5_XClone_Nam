@@ -1,11 +1,9 @@
-// Import the functions you need from the SDKs you need
+// Importa solo las funciones necesarias del SDK modular
 import { initializeApp } from "firebase/app";
+import { getFirestore } from "firebase/firestore"; // Importa Firestore desde el SDK modular
 import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
-
-// Your web app's Firebase configuration
+// Configuración de Firebase
 const firebaseConfig = {
   apiKey: "AIzaSyCDgbzHM1W7mgti_H1Pn9qg4OyqUVaSxi4",
   authDomain: "xclone-5975c.firebaseapp.com",
@@ -15,9 +13,11 @@ const firebaseConfig = {
   appId: "1:350416528947:web:5690416aab523d975be546"
 };
 
-// Initialize Firebase
+// Inicializa Firebase y los servicios
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const googleProvider = new GoogleAuthProvider();
+const db = getFirestore(app); // Inicializa Firestore con el SDK modular
 
-export { auth, googleProvider, signInWithEmailAndPassword, createUserWithEmailAndPassword, signInWithPopup };
+// Exporta los servicios para usarlos en tu aplicación
+export { auth, googleProvider, signInWithEmailAndPassword, createUserWithEmailAndPassword, signInWithPopup, db };

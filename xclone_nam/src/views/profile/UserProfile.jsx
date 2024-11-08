@@ -1,29 +1,40 @@
 import TabContext from "@mui/lab/TabContext";
 import TabList from "@mui/lab/TabList";
 import TabPanel from "@mui/lab/TabPanel";
-import { Avatar, Box, Grid2 as Grid, Tab, Typography } from "@mui/material";
-import React from "react";
+import { Avatar, Box, CircularProgress, Grid2 as Grid, Tab, Typography } from "@mui/material";
+import React, { useEffect, useState } from "react";
 import ListOfUsers from "./ListOfUsers";
 import { Post } from "./Post";
-import { followers } from "../../mocks/getFollowers";
-import { following } from "../../mocks/getFollowing";
 import FollowButton from "./FollowButton";
-import { myInfo } from "../../mocks/getMyInfo";
+import { fetchUsers } from "../../utils/utilUser";
 
-export const UserProfile = ({ userInfo, userId }) => {
+export const UserProfile = ({ userInfo, userId, posts }) => {
+  
+  const [user, setUser] = useState([]);
+  const [users, setUsers] = useState([]);
+  
+  const [loading, setLoading] = useState(true);
   //Define what the show profile (user or me)
   const itsMe = userId == undefined;
-
+  console.log(userId)
   //this is for handle the options in the profile
   const [value, setValue] = React.useState("1");
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
 
-  //
-  followers.sort((a, b) => a.name.localeCompare(b.name));
-  following.sort((a, b) => a.name.localeCompare(b.name));
-  return (
+  useEffect(() => {
+    setLoading(true);
+    // Llama a `fetchUsers` para obtener los usuarios y actualizar el estado
+    fetchUsers((fetchedUsers) => {
+      setUser(fetchedUsers.find((user)=>user.id === userId || user.id === userInfo.id));
+      setUsers(fetchedUsers);
+      setLoading(false);
+    });
+}, [setUser]);
+return (
+    <>
+    {loading ? <CircularProgress /> :
     <>
       <Box sx={{ flexGrow: 1, mt: 8 }}>
         <Grid container spacing={2} justifyContent="center" alignItems="center">
@@ -37,15 +48,15 @@ export const UserProfile = ({ userInfo, userId }) => {
           <Grid sx={{ mt: 5 }} item xs={6}>
             <Typography sx={{ color: "#353432" }} variant="h5">
               {" "}
-              {userInfo.name}
+              { user?.name || userInfo.name}
             </Typography>
             <Typography sx={{ color: "#4E4D4A" }} variant="h6">
-              {userInfo.userName}
+              @{ user?.userName || userInfo.userName}
             </Typography>
           </Grid>
           <Grid sx={{ mt: 5, ml: 3 }} item xs={4}>
             <Typography sx={{ color: "#4E4D4A" }} variant="h6">
-              {userInfo.postCount} post
+              {posts.length || 0} post
             </Typography>
             {/* && help us for only condition, if is only if without else */}
             {!itsMe && <FollowButton initialFollowing={userInfo.isFollowing} />}
@@ -85,7 +96,7 @@ export const UserProfile = ({ userInfo, userId }) => {
                 "&.Mui-selected": { color: "#353432" }, // Color when is selected
               }}
               // templete string format
-              label={`followers (${userInfo.followers || 0})`}
+              label={`followers (${user?.listOfFollowers.length || 0})`}
               value="3"
             />
             <Tab
@@ -93,22 +104,29 @@ export const UserProfile = ({ userInfo, userId }) => {
                 color: "#353432",
                 "&.Mui-selected": { color: "#353432" }, // Color when is selected
               }}
-              label={`following (${userInfo.following || 0})`}
+              label={`following (${user?.listOfFollowing.length || 0})`}
               value="4"
             />
           </TabList>
         </Box>
         <TabPanel value="1">
-          <Post posts={myInfo.myPost} />
+          {/* if posts exist then render the post else show a message */}
+          {posts && posts.length > 0? (
+            <Post posts={posts} />
+          ) : (
+            <Typography sx={{ color: "#4E4D4A", mt: 10 }} variant="h6">There are not posts yet</Typography>
+          ) 
+          }
         </TabPanel>
         <TabPanel value="2">Saved</TabPanel>
         <TabPanel value="3">
-          <ListOfUsers follows={followers} />
+          <ListOfUsers follows={user?.listOfFollowers || []} users={users} />
         </TabPanel>
         <TabPanel value="4">
-          <ListOfUsers follows={following} />
+          <ListOfUsers follows={user?.listOfFollowing || []} users={users} />
         </TabPanel>
       </TabContext>
+      </>}
     </>
   );
 };
