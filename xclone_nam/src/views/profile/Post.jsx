@@ -10,21 +10,21 @@ import {
 } from "@mui/material";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import BookmarkIcon from "@mui/icons-material/Bookmark";
+import { formatDateAndTime, parseDate } from "../../utils/utilPosts";
 
 export const Post = ({ posts }) => {
-  // Function to order posts from most recent to oldest
-  const parseDate = (dateString) => {
-    const [day, month, year] = dateString.split("/");
-    return new Date(`20${year}-${month}-${day}`);
-  };
+  // Ordenar los posts por la fecha más reciente, verificando que hourAndDate exista
+  posts.sort((a, b) => {
+    const dateA = a.hourAndDate?.seconds ?? 0; 
+    const dateB = b.hourAndDate?.seconds ?? 0;  
+    return dateB - dateA;
+  });
 
-  posts.sort((a, b) => parseDate(b.date) - parseDate(a.date));
-
-  // Pagination states
+  //Pagination states
   const [page, setPage] = useState(1);
   const postsPerPage = 10;
 
-  // Get the posts for the current page
+  //Get the posts for the current page
   const indexOfLastPost = page * postsPerPage;
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
   const currentPosts = posts.slice(indexOfFirstPost, indexOfLastPost);
@@ -37,7 +37,7 @@ export const Post = ({ posts }) => {
     <Box>
       {/* Map posts from current page */}
       {currentPosts.map((post) => (
-        <Card key={post.postId} sx={{ marginBottom: 2 }}>
+        <Card key={post.id} sx={{ marginBottom: 2 }}>
           <CardContent>
             <Grid container spacing={2}>
               <Typography
@@ -65,7 +65,8 @@ export const Post = ({ posts }) => {
                 color="text.secondary"
                 gutterBottom
               >
-                {post.date} {post.hour}
+                {parseDate(post.hourAndDate?.seconds) ||
+                  formatDateAndTime(post.hourAndDate)}
               </Typography>
             </Grid>
 
@@ -75,14 +76,14 @@ export const Post = ({ posts }) => {
                 mt: 5,
                 mb: 5,
                 maxWidth: 500,
-                wordBreak: "break-word",      // Breaks long words automatically
-                overflowWrap: "break-word",    // Breaks long lines
-                whiteSpace: "pre-wrap",        // Preserves line breaks and spaces
+                wordBreak: "break-word", // Breaks long words automatically
+                overflowWrap: "break-word", // Breaks long lines
+                whiteSpace: "pre-wrap", // Preserves line breaks and spaces
               }}
               variant="h5"
               component="div"
             >
-              {post.bodyPost}
+              {post.body}
             </Typography>
 
             <Button

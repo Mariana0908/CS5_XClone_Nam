@@ -11,30 +11,51 @@ import {
 import user from "../assets/images/user.png";
 import Textarea from "@mui/joy/Textarea";
 import { Context } from "../context/Context";
+import { addPost } from "../utils/utilPosts";
+import Swal from "sweetalert2";
 
 export const FormPost = () => {
   const [text, setText] = React.useState("");
   const { post, setPost, user: userName } = React.useContext(Context);
 
-  const addNewPost = () => {
-    setPost([
-      ...post,
-      {
-        userId: 0,
-        img: user,
+  const addNewPost = async () => {
+    const newPost = {
+      body: text,
+      name: userName.name,
+      userName: userName.userName,
+      userId: userName.id || userName.uid,
+    };
+    try {
+      const postResult = await addPost(newPost);
+      // Actualiza el estado del post después de crear el nuevo post exitosamente
+      setPost([
+        {
+          userId: userName.userId,
+          name: userName.name,
+          userName: userName.userName,
+          id: postResult,
+          hourAndDate: new Date(),
+          body: text,
+        },
+        ...post, // Esto coloca el nuevo post al principio
+      ]);
 
-        name: userName.displayName,
-        userName: userName.displayName,
-        isFollowing: false,
-        postId: post.length + 1,
-        date: "15/05/24",
-        hour: "5:20 pm",
-        bodyPost: text,
-        likeCount: 0,
-        savePost: true, //this is state for save post
-      },
-    ]);
-    setText("");
+      setText(""); // Limpia el campo de texto después de crear el post
+
+      // Muestra el popup de éxito
+      Swal.fire({
+        icon: "success",
+        title: "Post created successfully",
+        text: "Your post has been published successfully",
+      });
+    } catch (error) {
+      console.log(error);
+      Swal.fire({
+        icon: "error",
+        title: "Error",
+        text: "Something went wrong",
+      });
+    }
   };
 
   return (
@@ -63,10 +84,14 @@ export const FormPost = () => {
           if (event.target.value.length <= 280) {
             setText(event.target.value);
           } else {
-            alert("Texto demasiado largo, máximo 280 caracteres.");
+            Swal.fire({
+              icon: "warning",
+              title: "Text too long",
+              text: "Maximum 280 characters allowed.",
+              confirmButtonText: "OK",
+            });
             setText(event.target.value.slice(0, 280));
           }
-          
         }}
         minRows={2}
         maxRows={4}

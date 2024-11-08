@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import {
   TextField,
   Button,
@@ -12,9 +12,9 @@ import GoogleIcon from "@mui/icons-material/Google";
 import { Context } from "../context/Context";
 import { useNavigate } from "react-router-dom";
 import logoLogin from "../assets/images/logoNameSlogan.png"; // Make sure that the image path is correct.
+import { addUser } from "../utils/utilUser";
 
 export function Logup() {
-  const [name, setName] = useState("");
   const [errorAccount, setErrorAccount] = useState(false);
   const {
     signUp,
@@ -23,14 +23,25 @@ export function Logup() {
     setPassword,
     setUserName,
     email,
+    name, 
+    setName,
     password,
     userName,
   } = useContext(Context);
   const navigate = useNavigate();
 
   const handleSignUp = async () => {
+    const newUser = {
+      email,
+      password,
+      name,
+      userName,
+      listOfFollowers: [], 
+      listOfFollowing: [],
+    }
     try {
       await signUp();
+      await addUser(newUser);
       navigate("/home"); //Redirects to home page after registration
     } catch (error) {
       console.error("Login failed:", error.message);
@@ -40,7 +51,16 @@ export function Logup() {
   };
 
   const handleGoogleSignUp = async () => {
+    const newUser = {
+      email,
+      password,
+      name,
+      userName,
+      listOfFollowers: [], 
+      listOfFollowing: [],
+    }
     await loginWithGoogle();
+    await addUser(newUser);
     navigate("/home"); //Redirects to home page after registration with Google
   };
 

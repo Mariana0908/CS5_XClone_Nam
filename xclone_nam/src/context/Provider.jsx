@@ -7,28 +7,35 @@ import {
   googleProvider,
 } from "../firebase/config.js";
 import { Context } from "./Context.js";
-import { useNavigate } from "react-router-dom";
+import { fetchUsers } from "../utils/utilUser.js";
 
 export const Provider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [email, setEmail] = useState("");
   const [userName, setUserName] = useState("");
+  const [name, setName] = useState("");
   const [password, setPassword] = useState("");
   const [logged, setLogged] = useState(false);
   const [post, setPost] = useState(false);
 
   const login = async () => {
     try {
+
+      const user = await fetchUsers((fetchedUsers) => {
+        fetchedUsers.find(us=>us.id === userCredential.user.uid)
+      });
+        console.log("user", user);
+      
       const userCredential = await signInWithEmailAndPassword(
         auth,
         email,
         password
       );
-
-      setUser({
+      
+  setUser({
         userId: userCredential.user.uid,
         img: userCredential.user.photoURL,
-        name: userCredential.user.email,
+        name: userCredential.user.name,
         userName: userCredential.user.email,
         postCount: 0, 
         following: 0,
@@ -46,10 +53,10 @@ export const Provider = ({ children }) => {
 
   const signUp = async () => {
     try {
-      const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+      const userCredential = await createUserWithEmailAndPassword(auth, email, password, name);
       setUser({
         uid: userCredential.user.uid,
-        email: userCredential.user.email,
+        email,
         name,
         userName,
       });
@@ -81,6 +88,8 @@ export const Provider = ({ children }) => {
         setPassword,
         userName, 
         setUserName,
+        name,
+        setName,
         login,
         signUp,
         loginWithGoogle,
