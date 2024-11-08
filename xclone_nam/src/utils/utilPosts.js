@@ -10,8 +10,8 @@ export async function addPost({ body, name, userName, userId }) {
   const docRef = await addDoc(collection(db, "posts"), {
     body: body,
     hourAndDate: new Date(),
-    name: name,
-    userName: userName,
+    name: name || "",
+    userName: userName || "",
     userId: userId,
   });
   return docRef.id; // Este es el ID generado automáticamente.

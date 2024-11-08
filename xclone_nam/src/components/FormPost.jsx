@@ -18,12 +18,13 @@ export const FormPost = () => {
   const [text, setText] = React.useState("");
   const { post, setPost, user: userName } = React.useContext(Context);
 
+  console.log(userName);
   const addNewPost = async () => {
     const newPost = {
       body: text,
-      name: userName.name,
-      userName: userName.userName,
-      userId: userName.id || userName.uid,
+      name: userName.name || "",
+      userName: userName.userName || "",
+      userId: userName.id || userName.uid || userName.userId,
     };
     try {
       const postResult = await addPost(newPost);

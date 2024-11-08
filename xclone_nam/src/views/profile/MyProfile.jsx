@@ -22,7 +22,7 @@ export const Profile = () => {
       }
       else {
 
-        setPost(fetchedPosts.filter((post) => post.userId === userId || post.userId === user.uid));
+        setPost(fetchedPosts.filter((post) => post.userId === user.userId || post.userId === user.uid));
       }
       setLoading(false);
     });
